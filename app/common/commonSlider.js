@@ -1,37 +1,27 @@
-(function(){
-    
-    function cmSliderFn(){
-        var c = "hey"
-         
-        return{
-            template:"<h1>Range :{{user}}</h1>",
-            controller:function($scope){
-                $scope.user = abc;
-            },
-            restrict:"A,E",
-            //require:'ngModel',
-            link: function(scope,element,attrs,ctrl){
-                
-                element.slider({
-                  range: true,
-                  min: 0,
-                  max: 500,
-                  values: [ 75, 300 ],
-                  slide: function( event, ui ) {
-                    var rangeSlide = "$" + ui.values[0] + " - $" + ui.values[1];
-                      console.log(rangeSlide);
-                     
-                     
-                  }
-                });
-                ctrl.abc = 'hi';
-                console.log(ctrl);
+    (function(){
+
+        function cmSliderFn($compile){
+             var snippet = "<h2>Hello :{{rangeSlide}}</h2>";
+            return{
+                restrict:"A,E",
+                link: function(scope,element,attrs){
+                    var range = element.slider({
+                      range: true,
+                      min: 0,
+                      max: 500,
+                      values: [ 75, 300 ],
+                      slide: function( event, ui ) {
+                        scope.rangeSlide = "$" + ui.values[0] + " - $" + ui.values[1];
+                          scope.$apply();
+                      }
+                        });
+                    var content = $compile(snippet)(scope);
+                    element.append(content);
+                }
+
             }
-             
+
         }
-       
-    }
-    
-    angular.module("common")
-    .directive("cmSlider",[cmSliderFn]);
-})();
+        angular.module("common")
+        .directive("cmSlider",["$compile",cmSliderFn]);
+    })();

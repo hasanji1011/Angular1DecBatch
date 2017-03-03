@@ -1,0 +1,8 @@
+<form ng-controller="profileCtl">
+  <div class="form-group">
+    <label>Profile Pic</label>
+    <input id="file-upload" ng-model="fileLoc" type="file">
+  </div>
+  <div profile-picture></div>  
+  <button type="submit" ng-click="upload()" class="btn btn-default">Upload</button>
+</form>

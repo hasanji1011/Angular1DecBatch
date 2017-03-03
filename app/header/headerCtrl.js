@@ -1,7 +1,7 @@
 (function(){
     function headerCtrlFn(){
         var vm = this;
-        vm.brandName ="Hasan Store";
+        vm.brandName ="General Store";
         vm.navItems = ["Login","Register","Products","Cart"];
         vm.loginTemplate = "app/login/login.tpl.html";
         vm.registerTemplate = "app/register/register.tpl.html";
